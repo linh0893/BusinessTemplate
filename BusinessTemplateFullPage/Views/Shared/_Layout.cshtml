@@ -56,10 +56,10 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sản phẩm
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                 <li><a href="#">Tất cả</a></li>
+                                 <li><a href="~/Home/San_pham?Category=0&Search=@ViewBag.Search&page=1">Tất cả</a></li>
                                 @foreach (Category item in ViewBag.category)
                                 {
-                                     <li><a href="#">@item.Category_name</a></li>
+                                     <li><a href="~/Home/San_pham?Category=@item.Category_id&Search=@ViewBag.Search&page=1">@item.Category_name</a></li>
                                 }
                             </ul>
                         </li>

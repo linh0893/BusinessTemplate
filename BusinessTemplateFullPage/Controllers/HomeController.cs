@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessTemplateFullPage.Models;
+using BusinessTemplateFullPage.Services;
 
 namespace BusinessTemplateFullPage.Controllers
 {
@@ -27,15 +28,51 @@ namespace BusinessTemplateFullPage.Controllers
         {
             return View();
         }
-         
+
         public ActionResult Dich_vu()
         {
             return View();
         }
 
-        public ActionResult San_pham(int Category = 0, int page = 0, String Search = "")
+        public ActionResult San_pham(int Category = 0, int page = 1, String Search = null)
         {
-            return View();
+            int test = DB.Products.ToList().Count;
+            int ck = Config.ItemPerPage;
+
+          
+            ViewBag.Search = Search;
+            ViewBag.page = page;
+            ViewBag.categoryId = Category;
+
+            //int price;
+            //bool isNumeric = int.TryParse(Search, out n);
+            List<Product> data = new List<Product>();
+            if (Category != 0)
+            {
+               data = DB.Products.Where(p => (p.Category_Id == Category) && (p.Product_name.ToLower().Contains(Search.ToLower()))).ToList();
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(Search))
+                {
+                    data = DB.Products.ToList();
+                }
+                else
+                {
+                    data = DB.Products.Where(p => ((p.Product_name + " " + p.Descriptions + " " + p.Price.ToString()).ToLower().Contains(Search.ToLower()))).ToList();
+                }
+              
+            }
+
+            ViewBag.Allpage = (int)Math.Ceiling((Double)data.Count / Config.ItemPerPage) == 0 ? 1 : (int)Math.Ceiling((Double)data.Count / Config.ItemPerPage);
+
+
+            int start = (page - 1) * Config.ItemPerPage;
+            int length = data.Count < page * Config.ItemPerPage ? data.Count - start : page * Config.ItemPerPage - start;
+
+            data = data.GetRange(start, length);
+
+            return View(data);
         }
 
         public ActionResult Gioi_thieu()
@@ -64,6 +101,6 @@ namespace BusinessTemplateFullPage.Controllers
                 ViewBag.company = new CompanyInfor();
             }
             return View();
-        } 
+        }
     }
 }
