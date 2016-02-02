@@ -9,13 +9,13 @@
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-8">
                         <div class="contact-form">
-                            <h3>Contact Info</h3>
+                            <h3>@ViewBag.company.Company_name</h3>
 
                             <address>
-                              <strong>Twitter, Inc.</strong><br>
-                              795 Folsom Ave, Suite 600<br>
-                              San Francisco, CA 94107<br>
-                              <abbr title="Phone">P:</abbr> (123) 456-7890
+                              <strong>@ViewBag.company.Email</strong><br>
+                              @ViewBag.company.Address<br>
+                              
+                              <abbr title="Phone">Phone:</abbr> @ViewBag.company.Phone
                             </address>
 
                             <form id="main-contact-form" name="contact-form" method="post" action="#">
@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <textarea name="message" class="form-control" rows="8" placeholder="Message" required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                <button type="submit" class="btn btn-primary">Gửi thông tin</button>
                             </form>
                         </div>
                     </div>

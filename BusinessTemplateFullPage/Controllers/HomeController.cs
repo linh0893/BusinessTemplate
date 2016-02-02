@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BusinessTemplateFullPage.Models;
 
 namespace BusinessTemplateFullPage.Controllers
 {
@@ -10,6 +11,12 @@ namespace BusinessTemplateFullPage.Controllers
     {
         //
         // GET: /Home/
+        CoreDB DB = new CoreDB();
+
+        public HomeController()
+        {
+            ViewBag.category = DB.Categories;
+        }
 
         public ActionResult Index()
         {
@@ -26,7 +33,7 @@ namespace BusinessTemplateFullPage.Controllers
             return View();
         }
 
-        public ActionResult San_pham()
+        public ActionResult San_pham(int Category = 0, int page = 0, String Search = "")
         {
             return View();
         }
@@ -51,6 +58,11 @@ namespace BusinessTemplateFullPage.Controllers
 
         public ActionResult Lien_he()
         {
+            ViewBag.company = DB.CompanyInfors.FirstOrDefault();
+            if (ViewBag.company == null)
+            {
+                ViewBag.company = new CompanyInfor();
+            }
             return View();
         } 
     }
