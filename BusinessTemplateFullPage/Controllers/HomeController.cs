@@ -49,7 +49,14 @@ namespace BusinessTemplateFullPage.Controllers
             List<Product> data = new List<Product>();
             if (Category != 0)
             {
-               data = DB.Products.Where(p => (p.Category_Id == Category) && (p.Product_name.ToLower().Contains(Search.ToLower()))).ToList();
+               if (String.IsNullOrEmpty(Search))
+               {
+                   data = DB.Products.Where(p => p.Category_Id == Category ).ToList();
+               }
+               else
+               {
+                   data = DB.Products.Where(p => ((p.Product_name + " " + p.Descriptions + " " + p.Price.ToString()).ToLower().Contains(Search.ToLower()))).ToList();
+               }
             }
             else
             {

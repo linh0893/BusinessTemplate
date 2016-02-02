@@ -14,7 +14,7 @@
 
             <div class="row">
                 @foreach (Product item in Model) {
-                  <div class="col-sm-6 col-md-3">
+                  <div class="col-sm-6 col-md-3 center">
                         <div class="team-member wow fadeInUp" data-wow-duration="400ms" data-wow-delay="0ms">
                             <div class="team-img">
                                 <img class="img-responsive" src="@Url.Content("~/Content/images/team/01.jpg")" alt="">
@@ -24,12 +24,8 @@
                                 <span>100 vnd</span>
                             </div>
                             <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
+                            <a href="#">Xem chi tiết</a>
+                             
                         </div>
                   </div>
                 }
