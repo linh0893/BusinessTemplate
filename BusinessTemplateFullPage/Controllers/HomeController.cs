@@ -44,7 +44,7 @@ namespace BusinessTemplateFullPage.Controllers
             ViewBag.page = page;
             ViewBag.categoryId = Category;
 
-            //int price; test master 2 
+            //int price; test master first
             //bool isNumeric = int.TryParse(Search, out n);
             List<Product> data = new List<Product>();
             if (Category != 0)
